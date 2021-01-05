@@ -1,0 +1,43 @@
+<HTML>
+
+<HEAD>
+
+<BODY>
+	<!-- <img src = "white_king.svg" height = 100 width = 100 id="img_id"> -->
+	<canvas id="canvas_id" height="3000" width="3000">
+	</canvas>
+</BODY>
+</HEAD>
+
+</HTML>
+
+<script>
+	// setTimeout(() => {
+	// 	image_element = document.getElementById("img_id")
+	// 	image_element.style.height = "1000px"
+	// 	image_element.style.width = "1000px"
+	// 	console.log("time")
+	// }, 3000);
+	const canvas = document.getElementById('canvas_id')
+
+	const loadImage = (piece) => new Promise(resolve => {
+		let img = new Image();
+		img.src = "http://localhost:3001/resources/image/piece/" + "white_king";
+		img.draggable = "true"
+		img.name = piece
+		img.onload = function () {
+			resolve(img);
+		};
+	});
+
+	let image_element = 0
+	loadImage("").then((img)=>{
+		image_element = img
+		canvas.getContext('2d').drawImage(image_element,0,0,100, 100)
+		setTimeout(() => {
+			canvas.getContext('2d').drawImage(image_element,300,300, 1000, 1000)
+			console.log("draw")
+		}, 3000);
+	})
+
+</script>
